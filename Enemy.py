@@ -3,8 +3,8 @@ from constants import *
 from Entity import *
 
 class Enemy(Entity):
-    def __init__(self, screen: pygame.Surface, position: pygame.Vector2, size: pygame.Vector2) -> None:
-        super().__init__(screen, position, size)
+    def __init__(self, screen: pygame.Surface, position: pygame.Vector2, size: pygame.Vector2, sprite: pygame.sprite.Sprite) -> None:
+        super().__init__(screen, position, size, sprite)
 
     def draw(self):
         super().draw("black", 0, enemy=True)
@@ -23,3 +23,6 @@ class Enemy(Entity):
         if self.position_tile.x == entity.position_tile.x and self.position_tile.y == entity.position_tile.y:
             return True
         return False
+    
+    def draw(self):
+        super().draw()

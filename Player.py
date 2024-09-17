@@ -6,8 +6,8 @@ import pygame
 
 class Player(Entity):
 
-    def __init__(self, screen: pygame.Surface, position: pygame.Vector2, size: pygame.Vector2) -> None:
-        Entity.__init__(self, screen, position, size)
+    def __init__(self, screen: pygame.Surface, position: pygame.Vector2, size: pygame.Vector2, sprite: pygame.sprite.Sprite) -> None:
+        Entity.__init__(self, screen, position, size, sprite)
         self.shots = []
 
     def update(self, events: List):
@@ -26,6 +26,10 @@ class Player(Entity):
                 
 
     def draw(self):
-        Entity.draw(self, "blue", 0)
+
+        real_position = pygame.Vector2(self.size.x * self.position_tile.x, self.size.y * self.position_tile.y)
+        rectangle_tile = pygame.Rect(real_position, self.size)
+        self.screen.blit(self.sprite, rectangle_tile)
+        # Entity.draw(self, "blue", 0)
 
         
